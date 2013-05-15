@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -155,10 +155,10 @@ public class ResourceUtils {
 		pw.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />");
 		pw.println("<link rel=\"Shortcut icon\" href=\"/" + path.getFirst() + "/favicon.ico\" />");
 		pw.println("<link rel=\"stylesheet\" href=\"/" + path.getFirst() + "/css/style.css\" type=\"text/css\" />");
-		pw.println("<title>OpenKM WebDAV</title>");
+		pw.println("<title>ESDS WebDAV</title>");
 		pw.println("</header>");
 		pw.println("<body>");
-		pw.println("<h1>OpenKM WebDAV</h1>");
+		pw.println("<h1>ESDS WebDAV</h1>");
 		pw.println("<table>");
 		
 		if (!path.getStripFirst().getStripFirst().isRoot()) {

@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -70,7 +70,7 @@ import com.openkm.util.WarUtils;
 public class RepositoryStartupServlet extends HttpServlet {
 	private static Logger log = LoggerFactory.getLogger(RepositoryStartupServlet.class);
 	private static final long serialVersionUID = 1L;
-	private static Timer uiTimer;  // Update Info (OpenKM Update Information)
+	private static Timer uiTimer;  // Update Info (ESDS Update Information)
 	private static Timer cronTimer;  // CRON Manager
 	private static Timer uinTimer;  // User Interface Notification (Create From Administration)
 	private static Cron cron;
@@ -91,7 +91,7 @@ public class RepositoryStartupServlet extends HttpServlet {
 		// @see http://issues.openkm.com/view.php?id=1577
 		SLF4JBridgeHandler.install();
 		
-		// Get OpenKM version
+		// Get ESDS version
 		WarUtils.readAppVersion(sc);
 		log.info("*** Application version: {} ***", WarUtils.getAppVersion());
 		
@@ -158,13 +158,13 @@ public class RepositoryStartupServlet extends HttpServlet {
 	}
 	
 	/**
-	 * Start OpenKM and possible repository and database initialization
+	 * Start ESDS and possible repository and database initialization
 	 */
 	public static synchronized void start() throws ServletException {
 		SystemAuthentication systemAuth = new SystemAuthentication();
 		
 		if (running) {
-			throw new IllegalStateException("OpenKM already started");
+			throw new IllegalStateException("ESDS already started");
 		}
 		
 		try {
@@ -303,16 +303,16 @@ public class RepositoryStartupServlet extends HttpServlet {
 			log.warn(e.getMessage(), e);
 		}
 		
-		// OpenKM is started
+		// ESDS is started
 		running = true;
 	}
 	
 	/**
-	 * Close OpenKM and free resources
+	 * Close ESDS and free resources
 	 */
 	public static synchronized void stop(GenericServlet gs) {
 		if (!running) {
-			throw new IllegalStateException("OpenKM not started");
+			throw new IllegalStateException("ESDS not started");
 		}
 		
 		// Shutdown plugin framework
@@ -383,7 +383,7 @@ public class RepositoryStartupServlet extends HttpServlet {
 		jbpmContext.getJbpmConfiguration().close();
 		jbpmContext.close();
 		
-		// OpenKM is stopped
+		// ESDS is stopped
 		running = false;
 	}
 	

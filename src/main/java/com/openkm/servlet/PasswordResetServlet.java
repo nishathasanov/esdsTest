@@ -1,5 +1,5 @@
 /**
- * OpenKM, Open Document Management System (http://www.openkm.com)
+ * ESDS, Open Document Management System (http://www.openkm.com)
  * Copyright (c) 2006-2013 Danilo Tomasoni
  * 
  * No bytes were intentionally harmed during the development of this application.

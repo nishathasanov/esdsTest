@@ -22,7 +22,7 @@
     <context:component-scan base-package="com.openkm"/>
     
     <!-- <task:annotation-driven/> -->
-    <!-- Tasks configuration moved to $CATALINA_HOME/OpenKM.xml -->
+    <!-- Tasks configuration moved to $CATALINA_HOME/ESDS.xml -->
     
     <!-- Apache CXF Web Services -->
     <beans:import resource="classpath:META-INF/cxf/cxf.xml" />
@@ -136,9 +136,9 @@
     <!-- Security access logger -->
     <beans:bean id="loggerListener" class="com.openkm.spring.LoggerListener" />
     
-    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/OpenKMDS" resource-ref="true" />
+    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/ESDSDS" resource-ref="true" />
     
-    <!-- Security configuration moved to $CATALINA_HOME/OpenKM.xml -->
+    <!-- Security configuration moved to $CATALINA_HOME/ESDS.xml -->
     <!-- WINFIX
     <security:authentication-manager alias="authenticationManager">
         <security:authentication-provider>

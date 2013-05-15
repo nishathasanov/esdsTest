@@ -9,7 +9,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/desktop.css" type="text/css" />
-  <title>OpenKM Error</title>
+  <title>ESDS Error</title>
 </head>
 <body>
   <table border="0" width="100%" align="center" style="padding-top: 125px">

@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -116,7 +116,7 @@ public class MyEventListener implements EventListener {
 							"User: " + evn.getUserID() + "\n" +
 							"Action: " + eventType;
 						
-						MailUtils.sendMessage("monkiki@gmail.com", emails, "OpenKM notification", body);
+						MailUtils.sendMessage("monkiki@gmail.com", emails, "ESDS notification", body);
 				}
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();

@@ -5,9 +5,9 @@
   <artifactId>openkm</artifactId>
   <packaging>war</packaging>
   <version>6.2.4-DEV</version>
-  <name>OpenKM Web Application</name>
+  <name>ESDS Web Application</name>
   <url>http://www.openkm.com</url>
-  <description>OpenKM is powerful scalable Document Management System (DMS). OpenKM uses JBoss + J2EE + Ajax web (GWT) + Jackrabbit (lucene) open source technologies.</description>
+  <description>ESDS is powerful scalable Document Management System (DMS). ESDS uses JBoss + J2EE + Ajax web (GWT) + Jackrabbit (lucene) open source technologies.</description>
 
   <scm>
     <url>http://openkm.svn.sourceforge.net/viewvc/openkm/trunk</url>
@@ -101,10 +101,10 @@
       <url>http://milton.io/maven</url>
     </repository>
     
-    <!-- OpenKM repository -->
+    <!-- ESDS repository -->
     <repository>
       <id>openkm.com</id>
-      <name>OpenKM Maven Reporitory</name>
+      <name>ESDS Maven Reporitory</name>
       <url>http://maven.openkm.com/maven2</url>
     </repository>
 	
@@ -691,7 +691,7 @@
   </dependencies>
   
   <build>
-    <finalName>OpenKM</finalName>
+    <finalName>ESDS</finalName>
     <outputDirectory>war/WEB-INF/classes</outputDirectory>
     <plugins>
       <plugin>

@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -47,7 +47,7 @@ import com.openkm.util.SecureStore;
 /**
  * Used when running on Tomcat. Need to create a file conf/jaas.config with:
  * 
- * OpenKM {
+ * ESDS {
  *   com.openkm.jaas.CustomLoginModule REQUIRED debug=true;
  * };
  *
@@ -69,7 +69,7 @@ public class CustomLoginModule implements LoginModule {
 			System.out.println("Usage: java CustomLoginModule -Djava.security.auth.login.config=jaas.config <user> <password>");
 		} else {
 			MyCallbackHandler mch = new CustomLoginModule.MyCallbackHandler(args[0], args[1]);
-			LoginContext lc = new LoginContext("OpenKM", mch);
+			LoginContext lc = new LoginContext("ESDS", mch);
 			lc.login();
 			log.info("Authentication successful for {}", lc.getSubject());
 			lc.logout();

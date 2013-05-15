@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -98,7 +98,7 @@ import com.openkm.frontend.client.widget.wizard.WizardPopup;
  * @author jllort
  */
 public final class Main implements EntryPoint, HasLanguageHandlerExtension, HasLanguageEvent {
-	public static String CONTEXT = "/OpenKM";
+	public static String CONTEXT = "/ESDS";
 	private static Main singleton;
 	private final OKMLanguageServiceAsync languageService = (OKMLanguageServiceAsync) GWT.create(OKMLanguageService.class);
 	private final OKMRepositoryServiceAsync repositoryService = (OKMRepositoryServiceAsync) GWT.create(OKMRepositoryService.class);

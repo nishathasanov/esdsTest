@@ -229,11 +229,11 @@ public class DropboxServlet extends OKMRemoteServiceServlet implements OKMDropbo
 				if (category.equals(CATEGORY_FOLDER) && entry.isDir) {
 					list.add(gwtDropboxEntry);
 				} else if (category.equals(CATEGORY_DOCUMENT) && !entry.isDir) {
-					// Change MIME Type to defined into OpenKM
+					// Change MIME Type to defined into ESDS
 					gwtDropboxEntry.setMimeType(MimeTypeConfig.mimeTypes.getContentType(entry.fileName()));
 					list.add(gwtDropboxEntry);
 				} else if (category.equals("")) {
-					// Change MIME Type to defined into OpenKM
+					// Change MIME Type to defined into ESDS
 					gwtDropboxEntry.setMimeType(MimeTypeConfig.mimeTypes.getContentType(entry.fileName()));
 					list.add(gwtDropboxEntry);
 				}

@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -49,8 +49,8 @@ public class AboutPopup extends DialogBox implements ClickHandler {
 	private HTML htmlExtVersion;
 	private Button button;
 	private String msg = "<b>Be Open, my friend!</b><br>";
-	private String copy = "&nbsp;&copy 2006-2013 OpenKM <br><br>";
-	private String team = "<b>OpenKM Team</b><br><br>"; 
+	private String copy = "&nbsp;&copy 2006-2013 ESDS <br><br>";
+	private String team = "<b>ESDS Team</b><br><br>"; 
 							// "Francisco José Ávila Bermejo (<i>Monkiki</i>)<br>"+
 							// "Josep Llort Tella (<i>Darkman97i</i>)<br><br>";
 	private String web = "<a href=\"http://www.openkm.com\" target=\"_blank\">http://www.openkm.com</a><br><br>";

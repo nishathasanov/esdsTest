@@ -2,20 +2,20 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"> 
-  <display-name>OpenKM</display-name>
+  <display-name>ESDS</display-name>
   
   <!-- Tomcat resources -->
   <!-- Already defined in $TOMCAT_HOME/conf/context.xml -->
   <!--
   <resource-ref>
     <description>OKM Datasource</description>
-    <res-ref-name>jdbc/OpenKMDS</res-ref-name>
+    <res-ref-name>jdbc/ESDSDS</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
   <resource-ref>
     <description>OKM Mail</description>
-    <res-ref-name>mail/OpenKM</res-ref-name>
+    <res-ref-name>mail/ESDS</res-ref-name>
     <res-type>javax.mail.Session</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
@@ -71,7 +71,7 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>
       /WEB-INF/applicationContext.xml
-      file:${catalina.home}/OpenKM.xml
+      file:${catalina.home}/ESDS.xml
     </param-value>
   </context-param>
   

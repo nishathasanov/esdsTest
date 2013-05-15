@@ -23,7 +23,7 @@
     <!-- <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property> -->
 
     <!-- DataSource properties (begin) -->
-    <property name="hibernate.connection.datasource">java:/jdbc/OpenKMDS</property>
+    <property name="hibernate.connection.datasource">java:/jdbc/ESDSDS</property>
     <property name="hibernate.hbm2ddl.auto">create</property>
     <!-- DataSource properties (end) -->
 
@@ -220,7 +220,7 @@
     <mapping resource="org/jbpm/taskmgmt/log/SwimlaneCreateLog.hbm.xml"/>
     <mapping resource="org/jbpm/taskmgmt/log/SwimlaneAssignLog.hbm.xml"/>
     
-    <!-- OpenKM -->
+    <!-- ESDS -->
     <mapping resource="com/openkm/dao/bean/User.hbm.xml"/>
     <mapping resource="com/openkm/dao/bean/Role.hbm.xml"/>
     <mapping resource="com/openkm/dao/bean/Report.hbm.xml"/>

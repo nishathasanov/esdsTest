@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -386,7 +386,7 @@ public class LanguageServlet extends BaseServlet {
 		response.setHeader("Expires", "Sat, 6 May 1971 12:00:00 GMT");
 		response.setHeader("Cache-Control", "max-age=0, must-revalidate");
 		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
-		String fileName = "OpenKM_" + WarUtils.getAppVersion().getVersion() + "_" +language.getId() + ".sql";
+		String fileName = "ESDS_" + WarUtils.getAppVersion().getVersion() + "_" +language.getId() + ".sql";
 		
 		response.setHeader("Content-disposition", "inline; filename=\""+fileName+"\"");		
 		response.setContentType("text/x-sql; charset=UTF-8");

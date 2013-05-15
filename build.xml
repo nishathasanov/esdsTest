@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project name="OkmCommunity" default="all">
-	<description>OpenKM Community</description>
+	<description>ESDS Community</description>
 	
 	<target name="all" depends="build">
 	</target>

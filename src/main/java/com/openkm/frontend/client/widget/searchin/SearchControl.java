@@ -248,7 +248,7 @@ public class SearchControl extends Composite {
 		
 		// Type of search
 		searchTypePanel = new HorizontalPanel();
-		searchTypePanel.setVisible(true);  // On OpenKM 4.0 has hidden AND / OR option list
+		searchTypePanel.setVisible(true);  // On ESDS 4.0 has hidden AND / OR option list
 		searchTypeAnd = new CheckBox("AND");
 		searchTypeOr = new CheckBox("OR");
 		searchTypeAnd.setValue(true);

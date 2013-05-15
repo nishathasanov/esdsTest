@@ -18,15 +18,15 @@
     <c:when test="${isAdmin}">
       <ul id="breadcrumb">
         <li class="path">
-          <a href="home.jsp">OpenKM Administration</a>
+          <a href="home.jsp">ESDS Administration</a>
         </li>
       </ul>
       <br/>
       <table width="234px" class="form" style="margin-top: 25px">
-        <tr><td><b>OpenKM - Knowledge Management</b></td></tr>
+        <tr><td><b>ESDS - Knowledge Management</b></td></tr>
         <tr><td nowrap="nowrap">Version: <%=WarUtils.getAppVersion() %></td></tr>
         <tr><td>&nbsp;</td></tr>
-        <tr><td>&copy; 2006-2013 OpenKM</td></tr>
+        <tr><td>&copy; 2006-2013 ESDS</td></tr>
         <tr><td>&nbsp;</td></tr>
         <tr><td><b>Support</b></td></tr>
         <tr><td><a target="_blank" href="http://forum.openkm.com/">http://forum.openkm.com</a></td></tr>

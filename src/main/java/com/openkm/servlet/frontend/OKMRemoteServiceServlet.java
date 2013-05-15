@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -57,8 +57,8 @@ public class OKMRemoteServiceServlet extends RemoteServiceServlet {
 	    	// Get base url from the header instead of the body. This way 
 	    	// Apache reverse proxy with rewrite on header can work.
 	    	// Suggested at http://stackoverflow.com/questions/1517290/problem-with-gwt-behind-a-reverse-proxy-either-nginx-or-apache
-	    	// ProxyPass /app/ ajp://localhost:8009/OpenKM/
-	    	// RequestHeader edit X-GWT-Module-Base ^(.*)/app/(.*)$ $1/OpenKM/$2
+	    	// ProxyPass /app/ ajp://localhost:8009/ESDS/
+	    	// RequestHeader edit X-GWT-Module-Base ^(.*)/app/(.*)$ $1/ESDS/$2
 	    	String moduleBaseURLHdr = request.getHeader("X-GWT-Module-Base");
 	    	log.debug("X-GWT-Module-Base: {}", moduleBaseURLHdr);
 	    	

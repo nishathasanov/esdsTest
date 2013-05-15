@@ -16,7 +16,7 @@
     iframe { width: 100%; border: none; visibility: hidden; }
     div#menu { border-bottom: 1px solid #A5A596; background-color: #E5E5E1;}
   </style>
-  <title>OpenKM Administration</title>
+  <title>ESDS Administration</title>
   <script type="text/javascript">
     $(document).ready(function() {
     	$('div#menu li').bind('click', function() {

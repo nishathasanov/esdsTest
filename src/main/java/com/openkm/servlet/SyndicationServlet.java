@@ -1,5 +1,5 @@
 /**
- * OpenKM, Open Document Management System (http://www.openkm.com)
+ * ESDS, Open Document Management System (http://www.openkm.com)
  * Copyright (c) 2006-2013 Paco Avila & Josep Llort
  * 
  * No bytes were intentionally harmed during the development of this application.
@@ -73,55 +73,55 @@ public class SyndicationServlet extends BasicSecuredServlet {
 			
 			if ("/userLockedDocuments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getUserLockedDocumentsSrv(userId));
-				feed.setTitle("OpenKM: user locked documents");
+				feed.setTitle("ESDS: user locked documents");
 			} else if ("/userCheckedOutDocuments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getUserCheckedOutDocumentsSrv(userId));
-				feed.setTitle("OpenKM: user checked-out documents");
+				feed.setTitle("ESDS: user checked-out documents");
 			} else if ("/userSubscribedDocuments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getUserSubscribedDocumentsSrv(userId));
-				feed.setTitle("OpenKM: user subscribed documents");
+				feed.setTitle("ESDS: user subscribed documents");
 			} else if ("/userSubscribedFolders".equals(action)) {
 				feed = getFeedFolders(new DbDashboardModule().getUserSubscribedFoldersSrv(userId));
-				feed.setTitle("OpenKM: user subscribed folders");
+				feed.setTitle("ESDS: user subscribed folders");
 			} else if ("/userLastUploadedDocuments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getUserLastUploadedDocumentsSrv(userId));
-				feed.setTitle("OpenKM: user last uploaded documents");
+				feed.setTitle("ESDS: user last uploaded documents");
 			} else if ("/userLastModifiedDocuments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getUserLastModifiedDocumentsSrv(userId));
-				feed.setTitle("OpenKM: user last modified documents");
+				feed.setTitle("ESDS: user last modified documents");
 			} else if ("/userLastDownloadedDocuments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getUserLastDownloadedDocumentsSrv(userId));
-				feed.setTitle("OpenKM: user last downloaded documents");
+				feed.setTitle("ESDS: user last downloaded documents");
 			} else if ("/userLastImportedMails".equals(action)) {
 				feed = getFeedMails(new DbDashboardModule().getUserLastImportedMailsSrv(userId));
-				feed.setTitle("OpenKM: user last imported mails");
+				feed.setTitle("ESDS: user last imported mails");
 			} else if ("/userLastImportedMailAttachments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getUserLastImportedMailAttachmentsSrv(userId));
-				feed.setTitle("OpenKM: user last imported mail attachments");
+				feed.setTitle("ESDS: user last imported mail attachments");
 			} else if ("/lastWeekTopDownloadedDocuments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getLastWeekTopDownloadedDocumentsSrv(userId));
-				feed.setTitle("OpenKM: last week top downloaded documents");
+				feed.setTitle("ESDS: last week top downloaded documents");
 			} else if ("/lastMonthTopDownloadedDocuments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getLastMonthTopDownloadedDocumentsSrv(userId));
-				feed.setTitle("OpenKM: last month top downloaded documents");
+				feed.setTitle("ESDS: last month top downloaded documents");
 			} else if ("/lastWeekTopModifiedDocuments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getLastWeekTopModifiedDocumentsSrv(userId));
-				feed.setTitle("OpenKM: last week top modified documents");
+				feed.setTitle("ESDS: last week top modified documents");
 			} else if ("/lastMonthTopModifiedDocuments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getLastMonthTopModifiedDocumentsSrv(userId));
-				feed.setTitle("OpenKM: last month top modified documents");
+				feed.setTitle("ESDS: last month top modified documents");
 			} else if ("/lastModifiedDocuments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getLastModifiedDocumentsSrv(userId));
-				feed.setTitle("OpenKM: last modified documents");
+				feed.setTitle("ESDS: last modified documents");
 			} else if ("/lastUploadedDocuments".equals(action)) {
 				feed = getFeedDocuments(new DbDashboardModule().getLastUploadedDocumentsSrv(userId));
-				feed.setTitle("OpenKM: last uploaded documents");
+				feed.setTitle("ESDS: last uploaded documents");
 			} else if (action != null && action.startsWith("/news_")) {
 				String qpStr = action.substring(6);
 				int qpId = Integer.parseInt(qpStr);
 				QueryParams qp = QueryParamsDAO.findByPk(qpId);
 				feed = getFeedDocuments(new DbDashboardModule().findSrv(userId, qpId));
-				feed.setTitle("OpenKM: " + qp.getQueryName());
+				feed.setTitle("ESDS: " + qp.getQueryName());
 			}
 			
 			if (feed != null) {

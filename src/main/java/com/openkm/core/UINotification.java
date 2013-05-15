@@ -1,5 +1,5 @@
 /**
- * OpenKM, Open Document Management System (http://www.openkm.com)
+ * ESDS, Open Document Management System (http://www.openkm.com)
  * Copyright (C) 2006-2011 Paco Avila & Josep Llort
  * 
  * This program is free software; you can redistribute it and/or modify

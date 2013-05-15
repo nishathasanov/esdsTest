@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -76,7 +76,7 @@ public class BaseDocumentModule {
 	/**
 	 * Create a new document
 	 * 
-	 * TODO Parameter title to be used in OpenKM 6
+	 * TODO Parameter title to be used in ESDS 6
 	 */
 	public static Node create(Session session, Node parentNode, String name, String title, String mimeType,
 			String[] keywords, InputStream is) throws javax.jcr.ItemExistsException,
@@ -187,7 +187,7 @@ public class BaseDocumentModule {
 		// Properties
 		doc.setAuthor(docNode.getProperty(Document.AUTHOR).getString());
 		
-		// TODO Remove this check in OpenKM 6
+		// TODO Remove this check in ESDS 6
 		// if (documentNode.hasProperty(Document.TITLE)) {
 		// 	doc.setTitle(documentNode.getProperty(Document.TITLE).getPath());		
 		// }

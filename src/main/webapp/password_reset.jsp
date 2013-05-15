@@ -13,7 +13,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="Shortcut icon" href="<%=request.getContextPath() %>/favicon.ico" />
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/desktop.css" type="text/css" />
-  <title>OpenKM password reset</title>
+  <title>ESDS password reset</title>
 </head>
 <body onload="document.forms[0].elements[0].focus()">
   <div id="box">

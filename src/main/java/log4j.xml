@@ -43,7 +43,7 @@
 		<level value="error"/>
 	</logger>
 	
-	<!-- Ignore OpenKM internals -->
+	<!-- Ignore ESDS internals -->
 	<logger name="com.openkm.module">
 		<level value="info"/>
 	</logger>

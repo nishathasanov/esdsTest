@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -148,7 +148,7 @@ public class TopPanel extends Composite {
 			}
 		});
 		searchImage.setStyleName("okm-Hyperlink");
-		openkmVersion = new HTML(""); // OpenKM Professional is not shown
+		openkmVersion = new HTML(""); // ESDS Professional is not shown
 		openkmVersion.setStyleName("okm-NoWrap");
 		quickSearchPanel.add(openkmVersion);
 		quickSearchPanel.add(Util.hSpace("5"));

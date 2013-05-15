@@ -31,7 +31,7 @@
       preset = locale.getLanguage() + "-" + locale.getCountry();
     }
   %>
-  <title>OpenKM Login</title>
+  <title>ESDS Login</title>
 </head>
 <body onload="document.forms[0].elements[0].focus()">
   <u:constantsMap className="com.openkm.core.Config" var="Config"/>
@@ -47,8 +47,8 @@
     </div>
     <div id="text">
       <center><img src="<%=request.getContextPath() %>/img/lock.png"/></center>
-      <p>Welcome to OpenKM !</p>
-      <p>Use a valid username and password to access to OpenKM user Desktop.</p>
+      <p>Welcome to ESDS !</p>
+      <p>Use a valid username and password to access to ESDS user Desktop.</p>
     </div>
     <div id="form">
       <form name="loginform" method="post" action="j_spring_security_check" onsubmit="setCookie()">

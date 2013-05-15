@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -67,7 +67,7 @@ public class WebDAVServlet extends BasicSecuredServlet {
 			session = getSession(request);
 			WebDavService.get().handleRequest(request, response, ctx);
 		} catch (LoginException e) {
-			response.setHeader("WWW-Authenticate", "Basic realm=\"OpenKM Syndication Server\"");
+			response.setHeader("WWW-Authenticate", "Basic realm=\"ESDS Syndication Server\"");
 			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
 		} catch (RepositoryException e) {
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());

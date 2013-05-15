@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -79,7 +79,7 @@ public class RegisterThesaurusServlet extends BaseServlet {
 
 		if (!Config.KEA_THESAURUS_OWL_FILE.equals("")) {
 			out.println("<b>Starting thesaurus creation, this could take some hours.</b><br>");
-			out.println("<b>Don't close this window meanwhile OpenKM is creating thesaurus.</b><br>");
+			out.println("<b>Don't close this window meanwhile ESDS is creating thesaurus.</b><br>");
 			out.println("It'll be displayed creation information while creating nodes until level "
 					+ (level + 1) + ", please be patient because tree deep level could be big.<br><br>");
 			out.flush();
@@ -106,7 +106,7 @@ public class RegisterThesaurusServlet extends BaseServlet {
 			
 			out.println("<br><b>Finished thesaurus creation.</b><br>");
 		} else {
-			out.println("<b>Error - there's no thesaurus file defined in OpenKM.cfg</b>");
+			out.println("<b>Error - there's no thesaurus file defined in ESDS.cfg</b>");
 		}
 		
 		footer(out);

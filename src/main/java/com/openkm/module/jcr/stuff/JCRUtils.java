@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -116,7 +116,7 @@ public class JCRUtils {
 		ArrayList<String> list = new ArrayList<String>();
 		
 		for (int i=0; i<values.length; i++) {
-			// Do not propagate private OpenKM roles
+			// Do not propagate private ESDS roles
 			if (!values[i].getString().equals(Config.DEFAULT_ADMIN_ROLE)) {
 				list.add(values[i].getString()); 
 			}

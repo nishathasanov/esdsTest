@@ -1,5 +1,5 @@
 /**
- * OpenKM, Open Document Management System (http://www.openkm.com)
+ * ESDS, Open Document Management System (http://www.openkm.com)
  * Copyright (c) 2006-2013 Paco Avila & Josep Llort
  * 
  * No bytes were intentionally harmed during the development of this application.
@@ -229,7 +229,7 @@ public class MailUtils {
 	}
 	
 	/**
-	 * Send document to non-registered OpenKM users
+	 * Send document to non-registered ESDS users
 	 * 
 	 * @param toAddress Destination addresses.
 	 * @param subject The mail subject.
@@ -243,7 +243,7 @@ public class MailUtils {
 	}
 	
 	/**
-	 * Send document to non-registered OpenKM users
+	 * Send document to non-registered ESDS users
 	 * 
 	 * @param toAddress Destination addresses.
 	 * @param subject The mail subject.
@@ -541,7 +541,7 @@ public class MailUtils {
 		
 		try {
 			InitialContext initialContext = new InitialContext();
-			Object obj = initialContext.lookup(Config.JNDI_BASE + "mail/OpenKM");
+			Object obj = initialContext.lookup(Config.JNDI_BASE + "mail/ESDS");
 			mailSession = (Session) PortableRemoteObject.narrow(obj, Session.class);
 		} catch (javax.naming.NamingException e) {
 			e.printStackTrace();
@@ -762,7 +762,7 @@ public class MailUtils {
 	}
 
 	/**
-	 * Import mail into OpenKM repository
+	 * Import mail into ESDS repository
 	 */
 	public static void importMail(String token, String mailPath, boolean grouping, Folder folder, Message msg,
 			MailAccount ma, com.openkm.bean.Mail mail) throws DatabaseException, RepositoryException,

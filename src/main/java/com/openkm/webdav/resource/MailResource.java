@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -80,7 +80,7 @@ public class MailResource implements CopyableResource, DeletableResource, Getabl
 	@Override
 	public Object authenticate(String user, String password) {
 		// log.debug("authenticate({}, {})", new Object[] { user, password });
-		return "OpenKM";
+		return "ESDS";
 	}
 	
 	@Override

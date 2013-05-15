@@ -1,6 +1,6 @@
 <mail-templates>
 
-  <variable name="applicationUrl" value="http://localhost:8080/OpenKM/index.jsp" />
+  <variable name="applicationUrl" value="http://localhost:8080/ESDS/index.jsp" />
 
   <mail-template name='task-assign'>
     <actors>#{taskInstance.actorId}</actors>

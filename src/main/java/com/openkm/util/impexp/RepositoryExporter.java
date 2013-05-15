@@ -1,5 +1,5 @@
 /**
- * OpenKM, Open Document Management System (http://www.openkm.com)
+ * ESDS, Open Document Management System (http://www.openkm.com)
  * Copyright (c) 2006-2013 Paco Avila & Josep Llort
  * 
  * No bytes were intentionally harmed during the development of this application.
@@ -212,7 +212,7 @@ public class RepositoryExporter {
 	}
 	
 	/**
-	 * Export mail from OpenKM repository to filesystem.
+	 * Export mail from ESDS repository to filesystem.
 	 */
 	public static ImpExpStats exportMail(String token, String mailPath, String destPath, boolean metadata,
 			Writer out, InfoDecorator deco) throws PathNotFoundException, RepositoryException, DatabaseException,
@@ -250,7 +250,7 @@ public class RepositoryExporter {
 	}
 	
 	/**
-	 * Export document from OpenKM repository to filesystem.
+	 * Export document from ESDS repository to filesystem.
 	 */
 	public static ImpExpStats exportDocument(String token, String docPath, String destPath, boolean metadata,
 			boolean history, Writer out, InfoDecorator deco) throws PathNotFoundException, RepositoryException,

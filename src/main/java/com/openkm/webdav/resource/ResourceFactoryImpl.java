@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -43,7 +43,7 @@ import com.openkm.core.RepositoryException;
  */
 public class ResourceFactoryImpl implements ResourceFactory {
 	private static final Logger log = LoggerFactory.getLogger(ResourceFactoryImpl.class);
-	public static final String REALM = "OpenKM";
+	public static final String REALM = "ESDS";
 	
 	@Override
 	public Resource getResource(String host, String url) {

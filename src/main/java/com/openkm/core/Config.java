@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -66,7 +66,7 @@ public class Config {
 	public static final String STOP_JAR = "stop.jar";
 	
 	// Configuration files
-	public static final String OPENKM_CONFIG = "OpenKM.cfg";
+	public static final String OPENKM_CONFIG = "ESDS.cfg";
 	public static final String NODE_DEFINITIONS = "CustomNodes.cnd";
 	public static String CONTEXT;
 	public static String INSTANCE_HOME;
@@ -327,7 +327,7 @@ public class Config {
 	public static String PRINCIPAL_LDAP_USER_ATTRIBUTE; // uid
 	
 	public static List<String> PRINCIPAL_LDAP_ROLE_SEARCH_BASE = new ArrayList<String>(); // ou=groups,dc=openkm,dc=com
-	public static String PRINCIPAL_LDAP_ROLE_SEARCH_FILTER; // (&(objectClass=posixGroup)(cn=*)(|(description=*OpenKM*)(cn=users)))
+	public static String PRINCIPAL_LDAP_ROLE_SEARCH_FILTER; // (&(objectClass=posixGroup)(cn=*)(|(description=*ESDS*)(cn=users)))
 	public static String PRINCIPAL_LDAP_ROLE_ATTRIBUTE; // cn
 	
 	public static String PRINCIPAL_LDAP_USERNAME_SEARCH_BASE; // ou=people,dc=openkm,dc=com
@@ -422,7 +422,7 @@ public class Config {
 	
 	// Hibernate
 	public static String HIBERNATE_DIALECT = "org.hibernate.dialect.HSQLDialect";
-	public static String HIBERNATE_DATASOURCE = JNDI_BASE + "jdbc/OpenKMDS";
+	public static String HIBERNATE_DATASOURCE = JNDI_BASE + "jdbc/ESDSDS";
 	public static String HIBERNATE_HBM2DDL = "create";
 	public static String HIBERNATE_SHOW_SQL = "false";
 	public static String HIBERNATE_STATISTICS = "false";
@@ -455,7 +455,7 @@ public class Config {
 	}
 		
 	/**
-	 * Load OpenKM configuration from OpenKM.cfg 
+	 * Load ESDS configuration from ESDS.cfg 
 	 */
 	public static Properties load(ServletContext sc) {
 		Properties config = new Properties();
@@ -555,7 +555,7 @@ public class Config {
 	}
 	
 	/**
-	 * Reload OpenKM configuration from database
+	 * Reload ESDS configuration from database
 	 */
 	public static void reload(ServletContext sc, Properties cfg) {
 		try {
@@ -674,12 +674,12 @@ public class Config {
 			RESTRICT_FILE_NAME = ConfigDAO.getString(PROPERTY_RESTRICT_FILE_NAME, "*~;*.bak");
 			values.put(PROPERTY_RESTRICT_FILE_NAME, RESTRICT_FILE_NAME);
 			
-			NOTIFICATION_MESSAGE_SUBJECT = ConfigDAO.getText(PROPERTY_NOTIFICATION_MESSAGE_SUBJECT, "OpenKM - NOTIFICATION - ${documentName}");
+			NOTIFICATION_MESSAGE_SUBJECT = ConfigDAO.getText(PROPERTY_NOTIFICATION_MESSAGE_SUBJECT, "ESDS - NOTIFICATION - ${documentName}");
 			values.put(PROPERTY_NOTIFICATION_MESSAGE_SUBJECT, NOTIFICATION_MESSAGE_SUBJECT);
 			NOTIFICATION_MESSAGE_BODY = ConfigDAO.getText(PROPERTY_NOTIFICATION_MESSAGE_BODY, "<b>Document: </b><a href=\"${documentUrl}\">${documentPath}</a><br/><b>User: </b>${userId}<br/><b>Message: </b>${notificationMessage}<br/>");
 			values.put(PROPERTY_NOTIFICATION_MESSAGE_BODY, NOTIFICATION_MESSAGE_BODY);
 			
-			SUBSCRIPTION_MESSAGE_SUBJECT = ConfigDAO.getText(PROPERTY_SUBSCRIPTION_MESSAGE_SUBJECT, "OpenKM - ${eventType} - ${documentPath}");
+			SUBSCRIPTION_MESSAGE_SUBJECT = ConfigDAO.getText(PROPERTY_SUBSCRIPTION_MESSAGE_SUBJECT, "ESDS - ${eventType} - ${documentPath}");
 			values.put(PROPERTY_SUBSCRIPTION_MESSAGE_SUBJECT, SUBSCRIPTION_MESSAGE_SUBJECT);
 			SUBSCRIPTION_MESSAGE_BODY = ConfigDAO.getText(PROPERTY_SUBSCRIPTION_MESSAGE_BODY, "<b>Document: </b><a href=\"${documentUrl}\">${documentPath}</a><br/><b>User: </b>${userId}<br/><b>Event: </b>${eventType}<br/><b>Comment: </b>${subscriptionComment}<br/>");
 			values.put(PROPERTY_SUBSCRIPTION_MESSAGE_BODY, SUBSCRIPTION_MESSAGE_BODY);
@@ -688,7 +688,7 @@ public class Config {
 			values.put(PROPERTY_SUBSCRIPTION_TWITTER_USER, SUBSCRIPTION_TWITTER_USER);
 			SUBSCRIPTION_TWITTER_PASSWORD = ConfigDAO.getString(PROPERTY_SUBSCRIPTION_TWITTER_PASSWORD, "");
 			values.put(PROPERTY_SUBSCRIPTION_TWITTER_PASSWORD, SUBSCRIPTION_TWITTER_PASSWORD);
-			SUBSCRIPTION_TWITTER_STATUS = ConfigDAO.getText(PROPERTY_SUBSCRIPTION_TWITTER_STATUS, "OpenKM - ${documentUrl} - ${documentPath} - ${userId} - ${eventType}");
+			SUBSCRIPTION_TWITTER_STATUS = ConfigDAO.getText(PROPERTY_SUBSCRIPTION_TWITTER_STATUS, "ESDS - ${documentUrl} - ${documentPath} - ${userId} - ${eventType}");
 			values.put(PROPERTY_SUBSCRIPTION_TWITTER_STATUS, SUBSCRIPTION_TWITTER_STATUS);
 			
 			SYSTEM_APACHE_REQUEST_HEADER_FIX = ConfigDAO.getBoolean(PROPERTY_SYSTEM_APACHE_REQUEST_HEADER_FIX, "on".equalsIgnoreCase(cfg.getProperty(PROPERTY_SYSTEM_APACHE_REQUEST_HEADER_FIX, "off")));

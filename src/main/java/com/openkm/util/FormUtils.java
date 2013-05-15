@@ -1,5 +1,5 @@
 /**
- *  OpenKM, Open Document Management System (http://www.openkm.com)
+ *  ESDS, Open Document Management System (http://www.openkm.com)
  *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
  *
  *  No bytes were intentionally harmed during the development of this application.
@@ -812,7 +812,7 @@ public class FormUtils {
 					continue;
 				}
 				
-				String fpi = "-//OpenKM//DTD ";
+				String fpi = "-//ESDS//DTD ";
 				
 				// transform fileName to fpi;
 				// example: property-groups-2.0.dtd -> Property Groups 2.0
