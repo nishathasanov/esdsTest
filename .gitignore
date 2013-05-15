@@ -1,0 +1,12 @@
+.svn/
+target/
+bin/
+
+*.class
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Eclipse project files
+.classpath
+.project

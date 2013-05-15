@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:security="http://www.springframework.org/schema/security"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:task="http://www.springframework.org/schema/task"
+             xmlns:jee="http://www.springframework.org/schema/jee"
+             xmlns:jaxws="http://cxf.apache.org/jaxws"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                 http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                                 http://www.springframework.org/schema/security
+                                 http://www.springframework.org/schema/security/spring-security-3.1.xsd
+                                 http://www.springframework.org/schema/context
+                                 http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                                 http://www.springframework.org/schema/task
+                                 http://www.springframework.org/schema/task/spring-task-3.1.xsd
+                                 http://www.springframework.org/schema/jee
+                                 http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+                                 http://cxf.apache.org/jaxws
+                                 http://cxf.apache.org/schemas/jaxws.xsd">
+    
+    <context:component-scan base-package="com.openkm"/>
+    
+    <!-- <task:annotation-driven/> -->
+    <!-- Tasks configuration moved to $CATALINA_HOME/OpenKM.xml -->
+    
+    <!-- Apache CXF Web Services -->
+    <beans:import resource="classpath:META-INF/cxf/cxf.xml" />
+    <beans:import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+    
+    <!--
+    <beans:bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <beans:property name="targetClass" value="org.springframework.security.core.context.SecurityContextHolder" />
+        <beans:property name="targetMethod" value="setStrategyName" />
+        <beans:property name="arguments" value="_INHERITABLETHREADLOCAL" />
+    </beans:bean>
+    -->
+    
+    <beans:bean id="WSS4JInInterceptor" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+        <beans:constructor-arg>
+            <beans:map>
+                <beans:entry key="action" value="UsernameToken" />
+                <beans:entry key="passwordType" value="PasswordText" />
+                <beans:entry key="passwordCallbackClass" value="com.openkm.spring.ClientPasswordCallback" />
+            </beans:map>
+        </beans:constructor-arg>
+    </beans:bean>
+    
+    <jaxws:endpoint id="authService" implementor="com.openkm.ws.endpoint.AuthService" address="/OKMAuth"/>
+    <jaxws:endpoint id="bookmarkService" implementor="com.openkm.ws.endpoint.BookmarkService" address="/OKMBookmark"/>
+    <jaxws:endpoint id="documentService" implementor="com.openkm.ws.endpoint.DocumentService" address="/OKMDocument"/>
+    <jaxws:endpoint id="folderService" implementor="com.openkm.ws.endpoint.FolderService" address="/OKMFolder"/>
+    <jaxws:endpoint id="mailService" implementor="com.openkm.ws.endpoint.MailService" address="/OKMMail"/>
+    <jaxws:endpoint id="noteService" implementor="com.openkm.ws.endpoint.NoteService" address="/OKMNote"/>
+    <jaxws:endpoint id="notificationService" implementor="com.openkm.ws.endpoint.NotificationService" address="/OKMNotification"/>
+    <jaxws:endpoint id="propertyGroupService" implementor="com.openkm.ws.endpoint.PropertyGroupService" address="/OKMPropertyGroup"/>
+    <jaxws:endpoint id="propertyService" implementor="com.openkm.ws.endpoint.PropertyService" address="/OKMProperty"/>
+    <jaxws:endpoint id="repositoryService" implementor="com.openkm.ws.endpoint.RepositoryService" address="/OKMRepository"/>
+    <jaxws:endpoint id="searchService" implementor="com.openkm.ws.endpoint.SearchService" address="/OKMSearch"/>
+    <jaxws:endpoint id="dashboardService" implementor="com.openkm.ws.endpoint.DashboardService" address="/OKMDashboard"/>
+    <jaxws:endpoint id="workflowService" implementor="com.openkm.ws.endpoint.WorkflowService" address="/OKMWorkflow"/>
+    <jaxws:endpoint id="testService" implementor="com.openkm.ws.endpoint.TestService" address="/OKMTest">
+        <!--
+            <jaxws:inInterceptors>
+                <beans:ref bean="WSS4JInInterceptor"/>
+            </jaxws:inInterceptors>
+        -->
+    </jaxws:endpoint>
+    
+    <security:global-method-security secured-annotations="enabled"/>
+    
+    <!-- Remove prefix to be able of use custom roles -->
+    <beans:bean class="org.springframework.security.access.vote.RoleVoter">
+        <beans:property name="rolePrefix" value="ROLE_"/>
+    </beans:bean>
+    
+    <!-- Web Services using Basic authentication -->
+    <security:http pattern="/services/**" create-session="stateless">
+        <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <security:http-basic />
+    </security:http>
+    
+    <!-- Status -->
+    <security:http pattern="/Status" create-session="stateless">
+        <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
+        <security:http-basic />
+    </security:http>
+    
+    <!-- Download -->
+    <security:http pattern="/Download" create-session="stateless">
+        <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
+        <security:http-basic />
+    </security:http>
+    
+    <!-- Workflow deploy -->
+    <security:http pattern="/workflow-register" create-session="stateless">
+        <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
+        <security:http-basic />
+    </security:http>
+    
+    <!-- WebDAV using Basic authentication -->
+    <security:http pattern="/webdav/**" create-session="stateless">
+        <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
+        <security:http-basic />
+    </security:http>
+    
+    <!-- Syndication using Basic authentication -->
+    <security:http pattern="/feed/**" create-session="stateless">
+        <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
+        <security:http-basic />
+    </security:http>
+    
+    <!-- Additional filter chain for normal users, matching all other requests -->
+    <!-- http://info.michael-simons.eu/2011/01/28/disable-jsessionid-path-parameter-in-java-web-applications/ -->
+    <security:http access-denied-page="/unauthorized.jsp">
+    
+        <!-- GWT -->
+        <security:intercept-url pattern="/frontend/**" access="IS_AUTHENTICATED_FULLY" />
+        
+        <!-- JSPs -->
+        <security:intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+        
+        <!-- Servlets -->
+        <security:intercept-url pattern="/RepositoryStartup" access="IS_AUTHENTICATED_FULLY" />
+        <security:intercept-url pattern="/Test" access="IS_AUTHENTICATED_FULLY" />
+        
+        <!-- Extensions -->
+        <security:intercept-url pattern="/extension/**" access="IS_AUTHENTICATED_FULLY" />
+        
+        <!-- Login page -->
+        <security:form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?error=1"/>
+        
+    </security:http>
+    
+    <!-- Security access logger -->
+    <beans:bean id="loggerListener" class="com.openkm.spring.LoggerListener" />
+    
+    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/OpenKMDS" resource-ref="true" />
+    
+    <!-- Security configuration moved to $CATALINA_HOME/OpenKM.xml -->
+    <!-- WINFIX
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider>
+            <security:password-encoder hash="md5"/>
+            <security:jdbc-user-service 
+                data-source-ref="dataSource"
+                users-by-username-query="select usr_id, usr_password, 1 from OKM_USER where usr_id=? and usr_active='T'"
+                authorities-by-username-query="select ur_user, ur_role from OKM_USER_ROLE where ur_user=?"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
+    WINFIX -->
+</beans:beans>

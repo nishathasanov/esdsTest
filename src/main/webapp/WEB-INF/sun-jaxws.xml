@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime" version="2.0">
+  <endpoint name="OKMAuth" url-pattern="/OKMAuth"
+            implementation="com.openkm.ws.endpoint.OKMAuth" />
+  
+  <endpoint name="OKMBookmark" url-pattern="/OKMBookmark"
+            implementation="com.openkm.ws.endpoint.OKMBookmark" />
+  
+  <endpoint name="OKMDocument" url-pattern="/OKMDocument"
+            implementation="com.openkm.ws.endpoint.OKMDocument" />
+  
+  <endpoint name="OKMFolder" url-pattern="/OKMFolder"
+            implementation="com.openkm.ws.endpoint.OKMFolder" />
+
+  <endpoint name="OKMMail" url-pattern="/OKMMail"
+            implementation="com.openkm.ws.endpoint.OKMMail" />
+
+  <endpoint name="OKMNote" url-pattern="/OKMNote"
+            implementation="com.openkm.ws.endpoint.OKMNote" />
+
+  <endpoint name="OKMNotification" url-pattern="/OKMNotification"
+            implementation="com.openkm.ws.endpoint.OKMNotification" />
+
+  <endpoint name="OKMProperty" url-pattern="/OKMProperty"
+            implementation="com.openkm.ws.endpoint.OKMProperty" />
+
+  <endpoint name="OKMPropertyGroup" url-pattern="/OKMPropertyGroup"
+            implementation="com.openkm.ws.endpoint.OKMPropertyGroup" />
+
+  <endpoint name="OKMRepository" url-pattern="/OKMRepository"
+            implementation="com.openkm.ws.endpoint.OKMRepository" />
+
+  <endpoint name="OKMSearch" url-pattern="/OKMSearch"
+            implementation="com.openkm.ws.endpoint.OKMSearch" />
+
+  <endpoint name="OKMWorkflow" url-pattern="/OKMWorkflow"
+            implementation="com.openkm.ws.endpoint.OKMWorkflow" />
+
+  <endpoint name="OKMTest" url-pattern="/OKMTest"
+            implementation="com.openkm.ws.endpoint.OKMTest" />
+</endpoints>

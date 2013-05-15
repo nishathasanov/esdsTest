@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<project name="OkmCommunity" default="all">
+	<description>OpenKM Community</description>
+	
+	<target name="all" depends="build">
+	</target>
+	
+	<target name="build">
+			<exec executable="mvn">
+				<arg value="-Dmaven.test.skip=true"/>
+				<arg value="clean"/>
+				<arg value="gwt:compile"/>
+				<arg value="install"/>
+			</exec>
+	</target>
+</project>
