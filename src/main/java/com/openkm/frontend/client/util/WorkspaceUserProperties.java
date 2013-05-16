@@ -289,6 +289,10 @@ public class WorkspaceUserProperties {
 			if (workspace.isTabFolderSecurityVisible()) {
 				Main.get().mainPanel.desktop.browser.tabMultiple.tabFolder.showSecurity();
 			}
+			
+			Main.get().mainPanel.desktop.browser.tabMultiple.tabFolder.showWorkflowTab();
+			
+			
 			Main.get().mainPanel.desktop.browser.tabMultiple.tabFolder.showExtensions();
 			
 			// Mail tabs
@@ -298,6 +302,7 @@ public class WorkspaceUserProperties {
 			if (workspace.isTabMailNotesVisible()) {
 				Main.get().mainPanel.desktop.browser.tabMultiple.tabMail.showNotes();
 			}
+			
 			if (workspace.isTabMailPreviewVisible()) {
 				Main.get().mainPanel.desktop.browser.tabMultiple.tabMail.showPreview();
 			}

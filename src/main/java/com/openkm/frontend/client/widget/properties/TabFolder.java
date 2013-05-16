@@ -66,6 +66,7 @@ public class TabFolder extends Composite implements HasFolderEvent, HasFolderHan
 	public Folder folder;
 	private SecurityScrollTable security;
 	public Notes notes;
+	private WorkflowHistory workflowTab;
 	private VerticalPanel panel;
 	private List<PropertyGroup> propertyGroup;
 	private List<TabFolderExtension> widgetExtensionList;
@@ -80,6 +81,7 @@ public class TabFolder extends Composite implements HasFolderEvent, HasFolderHan
 	private boolean securityVisible = false;
 	private boolean notesVisible = false;
 	private boolean propertyGroupsVisible = false;
+	private boolean workflowHistoryVisible = false;
 	private int IEBugCorrections = 0;
 	
 	/**
@@ -95,6 +97,10 @@ public class TabFolder extends Composite implements HasFolderEvent, HasFolderHan
 		notes = new Notes(Notes.FOLDER_NOTE);
 		panel = new VerticalPanel();
 		propertyGroup = new ArrayList<PropertyGroup>();
+		
+		// workflow tab
+		workflowTab = new WorkflowHistory();
+		// workflowTab.showEmbedWorkflow(Main.get().activeFolderTree.getFolder().getUuid());
 		
 		tabPanel.addSelectionHandler(new SelectionHandler<Integer>() {
 			@Override
@@ -119,6 +125,7 @@ public class TabFolder extends Composite implements HasFolderEvent, HasFolderHan
 		tabPanel.setWidth("100%");
 		folder.setSize("100%", "100%");
 		notes.setSize("100%", "100%");
+		workflowTab.setSize("100%", "100%");
 		panel.setSize("100%", "100%");
 		
 		tabPanel.setStyleName("okm-DisableSelect");
@@ -139,6 +146,7 @@ public class TabFolder extends Composite implements HasFolderEvent, HasFolderHan
 		folder.setPixelSize(width,height-TAB_HEIGHT); // Substract tab height
 		security.setPixelSize(width,height-TAB_HEIGHT); // Substract tab height
 		notes.setPixelSize(width,height-TAB_HEIGHT); // Substract tab height
+		workflowTab.setPixelSize(width,height-TAB_HEIGHT); // Substract tab height
 		security.fillWidth();
 		
 		// Setting size to extension
@@ -164,6 +172,7 @@ public class TabFolder extends Composite implements HasFolderEvent, HasFolderHan
 	public void setProperties(GWTFolder folder) {
 		this.folder.set(folder); // Used by tabFolderCommunicator
 		notes.set(folder);	   	 // Used by TabFolderCommunicator
+		workflowTab.setUuid(folder.getUuid());
 		
 		selectedTab = tabPanel.getSelectedIndex(); 	// Sets the actual selected Tab
 		latestSelectedTab = selectedTab; 			// stores latest selected tab
@@ -279,6 +288,14 @@ public class TabFolder extends Composite implements HasFolderEvent, HasFolderHan
 			security.langRefresh();
 		}
 		
+		if (workflowHistoryVisible) {
+			for (int i = 0; i < 30; i++) {
+				System.out.println("langRefresh() in TabFolder");
+			}
+			
+			tabPanel.add(workflowTab, "Workflow history");
+		}
+		
 		// Adding extensions
 		for (Iterator<TabFolderExtension> it = widgetExtensionList.iterator(); it.hasNext();) {
 			TabFolderExtension extension = it.next();
@@ -309,6 +326,7 @@ public class TabFolder extends Composite implements HasFolderEvent, HasFolderHan
 		folder.setVisibleButtons(visible);
 		security.setVisibleButtons(visible);
 		notes.setVisibleButtons(visible);
+		workflowTab.showEmbedWorkflow(Main.get().activeFolderTree.getFolder().getUuid());
 		
 		fireEvent(HasFolderEvent.SET_VISIBLE_BUTTON);
 	}
@@ -505,6 +523,19 @@ public class TabFolder extends Composite implements HasFolderEvent, HasFolderHan
 		tabPanel.add(security, Main.i18n("tab.folder.security"));
 		securityVisible = true;
 		SECURITY_TAB = tabPanel.getWidgetCount()-1; // Starts at 0
+	}
+	
+	/**
+	 * showWorkflowTab
+	 */
+	public void showWorkflowTab() {
+		for (int i = 0; i < 30; i++) {
+			System.out.println("showWorkflowTab()");
+		}
+		
+		tabPanel.add(workflowTab, "Workflow history");
+		workflowHistoryVisible = true;
+		// SECURITY_TAB = tabPanel.getWidgetCount()-1; // Starts at 0
 	}
 	
 	/**
