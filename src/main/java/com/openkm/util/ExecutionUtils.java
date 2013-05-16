@@ -139,8 +139,6 @@ public class ExecutionUtils {
 				} else {
 					log.error("Main class not defined at: {}", jar.getPath());
 				}
-				
-				jcl.close();
 			} else {
 				log.warn("Unable to read jar: {}", jar.getPath());
 			}
@@ -170,8 +168,6 @@ public class ExecutionUtils {
 				} else {
 					log.error("Main class not defined at: {}", jar.getPath());
 				}
-				
-				jcl.close();
 			} else {
 				log.warn("Unable to read jar: {}", jar.getPath());
 			}
