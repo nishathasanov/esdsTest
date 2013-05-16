@@ -251,6 +251,9 @@ public class RepositoryStartupServlet extends HttpServlet {
 			String uisContent = "com.openkm.cache.UserItemsManager.serialize();";
 			CronTabUtils.createOrUpdate("User Items Serialize", "@hourly", uisContent);
 			
+			String ruiContent = "com.openkm.cache.UserItemsManager.refreshDbUserItems();";
+			CronTabUtils.createOrUpdate("Refresh User Items", "@weekly", ruiContent);
+			
 			String umiContent = "new com.openkm.core.UserMailImporter().run();";
 			CronTabUtils.createOrUpdate("User Mail Importer", "*/30 * * * *", umiContent);
 			

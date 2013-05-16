@@ -234,15 +234,14 @@ public class ChatManager {
 	
 	/**
 	 * Synchronized message user room actions
-	 * @throws PrincipalAdapterException 
 	 */
 	private synchronized List<String> messageUserRoomAction(String room, String user, String msg, int action) throws PrincipalAdapterException {
 		switch (action) {
 			case ACTION_GET_PENDING_USER_ROOM_MESSAGE:
 				if (msgUsersRooms.containsKey(room) && msgUsersRooms.get(room).containsKey(user)) {
 					List<String> messages = msgUsersRooms.get(room).get(user);
-					msgUsersRooms.get(room).put(user, new ArrayList<String>()); // Empty
-																				// messages
+					msgUsersRooms.get(room).put(user, new ArrayList<String>());
+					
 					return messages;
 				} else {
 					return new ArrayList<String>();
@@ -258,8 +257,7 @@ public class ChatManager {
 					for (Iterator<String> it = roomMap.keySet().iterator(); it.hasNext();) {
 						String roomUser = it.next();
 						
-						// Pending message is not added to himself ( that's done
-						// by UI )
+						// Pending message is not added to himself ( that's done by UI )
 						if (!roomUser.equals(user)) {
 							// Add message for each user available
 							roomMap.get(roomUser).add(message);

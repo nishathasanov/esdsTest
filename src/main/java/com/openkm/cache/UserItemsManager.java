@@ -28,6 +28,7 @@ import com.openkm.module.db.base.BaseFolderModule;
 public class UserItemsManager {
 	private static Logger log = LoggerFactory.getLogger(UserItemsManager.class);
 	private static Map<String, UserItems> userItemsMgr = new HashMap<String, UserItems>();
+	private static volatile boolean running = false;
 	
 	/**
 	 * Get stored user item
@@ -133,50 +134,61 @@ public class UserItemsManager {
 	 * Refresh user item cache from database.
 	 */
 	public static synchronized void refreshDbUserItems() throws RepositoryException {
-		log.info("refreshDbUserItems({})");
+		log.debug("refreshDbUserItems({})");
 		Map<String, ContentInfo> totalUserContInfo = new HashMap<String, ContentInfo>();
 		String[] bases = new String[] { Repository.ROOT, Repository.CATEGORIES, Repository.TEMPLATES,
 				Repository.PERSONAL, Repository.MAIL, Repository.TRASH };
 		
-		try {
-			for (String base : bases) {
-				log.info("Calculate user content info from '{}'...", base);
-				String uuid = NodeBaseDAO.getInstance().getUuidFromPath("/" + base);
-				Map<String, ContentInfo> userContInfo = BaseFolderModule.getUserContentInfo(uuid);
-				
-				for (String user : userContInfo.keySet()) {
-					ContentInfo usrTotContInfo = totalUserContInfo.get(user);
-					ContentInfo usrContInfo = userContInfo.get(user);
+		if (running) {
+			log.warn("*** Refresh user items already running ***");
+		} else {
+			running = true;
+			log.info("*** Begin refresh user items ***");
+			
+			try {
+				for (String base : bases) {
+					log.info("Calculate user content info from '{}'...", base);
+					String uuid = NodeBaseDAO.getInstance().getUuidFromPath("/" + base);
+					Map<String, ContentInfo> userContInfo = BaseFolderModule.getUserContentInfo(uuid);
 					
-					if (usrTotContInfo == null) {
-						usrTotContInfo = new ContentInfo();
+					for (String user : userContInfo.keySet()) {
+						ContentInfo usrTotContInfo = totalUserContInfo.get(user);
+						ContentInfo usrContInfo = userContInfo.get(user);
+						
+						if (usrTotContInfo == null) {
+							usrTotContInfo = new ContentInfo();
+						}
+						
+						usrTotContInfo.setDocuments(usrTotContInfo.getDocuments() + usrContInfo.getDocuments());
+						usrTotContInfo.setFolders(usrTotContInfo.getFolders() + usrContInfo.getFolders());
+						usrTotContInfo.setMails(usrTotContInfo.getMails() + usrContInfo.getMails());
+						usrTotContInfo.setSize(usrTotContInfo.getSize() + usrContInfo.getSize());
+						
+						totalUserContInfo.put(user, usrTotContInfo);
 					}
-					
-					usrTotContInfo.setDocuments(usrTotContInfo.getDocuments() + usrContInfo.getDocuments());
-					usrTotContInfo.setFolders(usrTotContInfo.getFolders() + usrContInfo.getFolders());
-					usrTotContInfo.setMails(usrTotContInfo.getMails() + usrContInfo.getMails());
-					usrTotContInfo.setSize(usrTotContInfo.getSize() + usrContInfo.getSize());
-					
-					totalUserContInfo.put(user, usrTotContInfo);
 				}
+				
+				for (String user : totalUserContInfo.keySet()) {
+					ContentInfo contInfo = totalUserContInfo.get(user);
+					UserItems userItems = new UserItems();
+					userItems.setDocuments(contInfo.getDocuments());
+					userItems.setFolders(contInfo.getFolders());
+					userItems.setSize(contInfo.getSize());
+					userItems.setUser(user);
+					userItemsMgr.put(user, userItems);
+				}
+			} catch (PathNotFoundException e) {
+				throw new RepositoryException("PathNotFoundException: " + e, e);
+			} catch (DatabaseException e) {
+				throw new RepositoryException("DatabaseException: " + e, e);
+			} finally {
+				running = false;
 			}
 			
-			for (String user : totalUserContInfo.keySet()) {
-				ContentInfo contInfo = totalUserContInfo.get(user);
-				UserItems userItems = new UserItems();
-				userItems.setDocuments(contInfo.getDocuments());
-				userItems.setFolders(contInfo.getFolders());
-				userItems.setSize(contInfo.getSize());
-				userItems.setUser(user);
-				userItemsMgr.put(user, userItems);
-			}
-		} catch (PathNotFoundException e) {
-			throw new RepositoryException("PathNotFoundException: " + e, e);
-		} catch (DatabaseException e) {
-			throw new RepositoryException("DatabaseException: " + e, e);
+			log.info("*** End refresh user items ***");
 		}
- 		
- 		log.info("refreshDbUserItems: void");
+		
+ 		log.debug("refreshDbUserItems: void");
 	}
 
 	/**

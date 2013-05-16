@@ -45,7 +45,7 @@ public class ChatServlet extends OKMRemoteServiceServlet implements OKMChatServi
 	private static Logger log = LoggerFactory.getLogger(ChatServlet.class);
 	private static final long serialVersionUID = 3780857624687394918L;
 	private static final int DELAY = 1000; // mseg
-	private static final int CYCLES = 5;  // number of seconds CYCLES*DELAY
+	private static final int CYCLES = 5; // number of seconds CYCLES*DELAY
 	private static final ChatManager manager = new ChatManager();
 	
 	@Override
@@ -77,6 +77,7 @@ public class ChatServlet extends OKMRemoteServiceServlet implements OKMChatServi
 	public List<GWTUser> getLoggedUsers() throws OKMException {
 		List<GWTUser> users = new ArrayList<GWTUser>();
 		updateSessionManager();
+		
 		try {
 			for (String userId : manager.getLoggedUsers()) {
 				GWTUser user = new GWTUser();
@@ -86,22 +87,22 @@ public class ChatServlet extends OKMRemoteServiceServlet implements OKMChatServi
 			}
 		} catch (PrincipalAdapterException e) {
 			log.error(e.getMessage(), e);
-			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter),
-					e.getMessage());
+			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter), e.getMessage());
 		}
+		
 		return users;
 	}
 	
 	@Override
 	public String createNewChatRoom(String user) throws OKMException {
 		updateSessionManager();
+		
 		try {
 			String actualUser = getThreadLocalRequest().getRemoteUser();
 			return manager.createNewChatRoom(actualUser, user);
 		} catch (PrincipalAdapterException e) {
 			log.error(e.getMessage(), e);
-			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter),
-					e.getMessage());
+			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter), e.getMessage());
 		}
 	}
 	
@@ -129,8 +130,7 @@ public class ChatServlet extends OKMRemoteServiceServlet implements OKMChatServi
 			}
 		} catch (PrincipalAdapterException e) {
 			log.error(e.getMessage(), e);
-			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter),
-					e.getMessage());
+			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter), e.getMessage());
 		}
 		
 		return pendingMessages;
@@ -172,8 +172,7 @@ public class ChatServlet extends OKMRemoteServiceServlet implements OKMChatServi
 			}
 		} catch (PrincipalAdapterException e) {
 			log.error(e.getMessage(), e);
-			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter),
-					e.getMessage());
+			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter), e.getMessage());
 		}
 	}
 	
@@ -188,8 +187,7 @@ public class ChatServlet extends OKMRemoteServiceServlet implements OKMChatServi
 			}
 		} catch (PrincipalAdapterException e) {
 			log.error(e.getMessage(), e);
-			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter),
-					e.getMessage());
+			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter), e.getMessage());
 		}
 	}
 	
@@ -200,8 +198,7 @@ public class ChatServlet extends OKMRemoteServiceServlet implements OKMChatServi
 			manager.addUserToChatRoom(user, room);
 		} catch (PrincipalAdapterException e) {
 			log.error(e.getMessage(), e);
-			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter),
-					e.getMessage());
+			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter), e.getMessage());
 		}
 	}
 	
@@ -213,8 +210,7 @@ public class ChatServlet extends OKMRemoteServiceServlet implements OKMChatServi
 			return String.valueOf(manager.getNumberOfUsersInRoom(room));
 		} catch (PrincipalAdapterException e) {
 			log.error(e.getMessage(), e);
-			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter),
-					e.getMessage());
+			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter), e.getMessage());
 		}
 	}
 	
@@ -226,8 +222,7 @@ public class ChatServlet extends OKMRemoteServiceServlet implements OKMChatServi
 			return manager.getUsersInRoom(room);
 		} catch (PrincipalAdapterException e) {
 			log.error(e.getMessage(), e);
-			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter),
-					e.getMessage());
+			throw new OKMException(ErrorCode.get(ErrorCode.ORIGIN_OKMChatService, ErrorCode.CAUSE_PrincipalAdapter), e.getMessage());
 		}
 	}
 	

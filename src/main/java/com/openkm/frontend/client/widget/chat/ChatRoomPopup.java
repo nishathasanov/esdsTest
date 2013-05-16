@@ -1,23 +1,5 @@
 /**
- *  ESDS, Open Document Management System (http://www.openkm.com)
- *  Copyright (c) 2006-2013  Paco Avila & Josep Llort
- *
- *  No bytes were intentionally harmed during the development of this application.
- *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- *  
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License along
- *  with this program; if not, write to the Free Software Foundation, Inc.,
- *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- */
+ *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.*/
 
 package com.openkm.frontend.client.widget.chat;
 
@@ -54,8 +36,8 @@ import com.openkm.frontend.client.util.OKMBundleResources;
 public class ChatRoomPopup extends ChatRoomDialogBox {
 	private final OKMChatServiceAsync chatService = (OKMChatServiceAsync) GWT.create(OKMChatService.class);
 	
-	private final static int DELAY_PENDING_MESSAGE  = 1000; // 1 seg
-	private final static int DELAY_USERS_IN_ROOM 	= 3*1000; // 3 seg
+	private final static int DELAY_PENDING_MESSAGE = 1000; // 1 seg
+	private final static int DELAY_USERS_IN_ROOM = 3 * 1000; // 3 seg
 	
 	private VerticalPanel vPanel;
 	private HorizontalPanel hPanel;
@@ -74,7 +56,7 @@ public class ChatRoomPopup extends ChatRoomDialogBox {
 	 */
 	public ChatRoomPopup(String user, final String room) {
 		// Establishes auto-close when click outside
-		super(false,false);
+		super(false, false);
 		setText(Main.i18n("chat.room"));
 		singleton = this;
 		chatRoomActive = true;
@@ -106,7 +88,7 @@ public class ChatRoomPopup extends ChatRoomDialogBox {
 			@Override
 			public void onClick(ClickEvent event) {
 				chatRoomActive = false;
-				chatService.closeRoom(room,new AsyncCallback<Object>() {
+				chatService.closeRoom(room, new AsyncCallback<Object>() {
 					@Override
 					public void onSuccess(Object arg0) {
 						Main.get().mainPanel.bottomPanel.userInfo.removeChatRoom(singleton);
@@ -153,16 +135,17 @@ public class ChatRoomPopup extends ChatRoomDialogBox {
 		textArea.setSize("390", "50");
 		textArea.addKeyUpHandler(new KeyUpHandler() {
 			@Override
-			public void onKeyUp(KeyUpEvent event) {		
+			public void onKeyUp(KeyUpEvent event) {
 				if (KeyCodes.KEY_ENTER == event.getNativeKeyCode() && textArea.getText().length() == 1) {
 					// Case only has typewrite a enter character, reset textArea values
 					textArea.setText("");
-				} else 	if (KeyCodes.KEY_ENTER == event.getNativeKeyCode() && textArea.getText().length() > 1) {
+				} else if (KeyCodes.KEY_ENTER == event.getNativeKeyCode() && textArea.getText().length() > 1) {
 					textArea.setEnabled(false);
 					chatService.addMessageToRoom(room, formatingMessage(textArea.getText()), new AsyncCallback<Object>() {
 						@Override
 						public void onSuccess(Object result) {
-							addMessage("<b>" + Main.get().workspaceUserProperties.getUser().getUsername() + "</b>: " + formatingMessage(textArea.getText()));
+							addMessage("<b>" + Main.get().workspaceUserProperties.getUser().getUsername() + "</b>: "
+									+ formatingMessage(textArea.getText()));
 							textArea.setText("");
 							textArea.setEnabled(true);
 						}
@@ -236,7 +219,7 @@ public class ChatRoomPopup extends ChatRoomDialogBox {
 				
 				@Override
 				public void onSuccess(String result) {
-					usersInRoomText.setHTML("(" + result +") " + Main.i18n("chat.users.in.room"));	
+					usersInRoomText.setHTML("(" + result + ") " + Main.i18n("chat.users.in.room"));
 					Timer timer = new Timer() {
 						@Override
 						public void run() {
@@ -291,8 +274,9 @@ public class ChatRoomPopup extends ChatRoomDialogBox {
 	 */
 	private void addMessage(String msg) {
 		table.setHTML(table.getRowCount(), 0, msg);
-		if (table.getOffsetHeight()>scrollPanel.getOffsetHeight()) {
-			int position = table.getOffsetHeight()-scrollPanel.getOffsetHeight();
+		
+		if (table.getOffsetHeight() > scrollPanel.getOffsetHeight()) {
+			int position = table.getOffsetHeight() - scrollPanel.getOffsetHeight();
 			scrollPanel.setVerticalScrollPosition(position);
 		}
 	}
