@@ -53,6 +53,11 @@ public class DatabasePrincipalAdapter implements PrincipalAdapter {
 			throw new PrincipalAdapterException(e.getMessage(), e);
 		}
 		
+		// limit users
+        if (list.size() > 150) {
+            throw new PrincipalAdapterException("User limit exceeded");
+        }
+		
 		log.debug("getUsers: {}", list);
 		return list;
 	}

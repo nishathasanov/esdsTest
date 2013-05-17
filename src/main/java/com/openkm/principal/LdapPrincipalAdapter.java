@@ -105,6 +105,11 @@ public class LdapPrincipalAdapter implements PrincipalAdapter {
 			}
 		}
 		
+		// limit users
+        if (list.size() > 150) {
+            throw new PrincipalAdapterException("User limit exceeded");
+        }
+		
 		log.debug("getUsers: {}", list);
 		return list;
 	}
