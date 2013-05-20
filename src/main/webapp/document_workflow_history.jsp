@@ -19,29 +19,23 @@
 <%
   //List<Task> tasks=(List<Task>)request.getSession().getAttribute("tasks");
   //SimpleDateFormat istediyimizFormat=new SimpleDateFormat(“MM dd yyyy”);
-      String query="SELECT "+
- "      i1.ID_ as i1_ID,"+
- "      i1.actorid_ as FROM_,"+
-"	if(i2.actorid_ is null ,i1.actorid_,i2.actorid_ ) as TO_,"+
- "      i1.NAME_ as i1_NAME_,"+
- "      i1.CREATE_ as CREATE_,"+
- "      i1.START_ as START_,"+
-  "     i2.END_ as END_"+
-" FROM "+
-" (SELECT * from jbpm_taskinstance WHERE TASK_ in "+
-" (select ID_ from jbpm_task where PROCESSDEFINITION_ in "+
-" (SELECT PROCESSDEFINITION_ from jbpm_processinstance where ID_  in "+
-" ( SELECT  PROCESSINSTANCE_ from jbpm_variableinstance WHERE STRINGVALUE_=? )))) i1 "+
-" LEFT OUTER JOIN " +
-
-" (SELECT * from jbpm_taskinstance WHERE TASK_ in "+
-" (select ID_ from jbpm_task where PROCESSDEFINITION_ in"+
-" (SELECT PROCESSDEFINITION_ from jbpm_processinstance where ID_  in "+
-" ( SELECT  PROCESSINSTANCE_ from jbpm_variableinstance WHERE STRINGVALUE_=? ))))"+
-" i2 ON (i1.END_=+i2.CREATE_)" +
-" ;";
-
+      String query="SELECT ID_,ACTORID_,NAME_,CREATE_,END_ from jbpm_taskinstance WHERE "+
+" TASK_ in "+
+"(select ID_ from jbpm_task where PROCESSDEFINITION_ in"+
+"(SELECT PROCESSDEFINITION_ from jbpm_processinstance  p where ID_  in "+
+"( SELECT  PROCESSINSTANCE_ from jbpm_variableinstance WHERE STRINGVALUE_=? )))"+
+"and "+
+"PROCINST_ in "+
+"(SELECT ID_ from jbpm_processinstance  p where ID_  in "+
+"( SELECT  PROCESSINSTANCE_ from jbpm_variableinstance WHERE STRINGVALUE_=? )) ORDER BY ID_"+
+";";
+  
+ String query2="select * from  jbpm_node where ID_ in "+
+"(select NODE_ from jbpm_token WHERE  END_ is not null and PROCESSINSTANCE_ in"+
+"(select PROCESSINSTANCE_ from jbpm_variableinstance WHERE STRINGVALUE_=?));";
+ 
             List<Task> tasks=new ArrayList<Task>();
+            Task lasttask=null;
             
             String uuid=request.getParameter("uuid");
            
@@ -56,16 +50,35 @@
             
             //list addd rows
             while(rs.next()){
-            tasks.add(new Task(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getTimestamp(5),rs.getTimestamp(6), rs.getTimestamp(7)));
+               
+                Task task = new Task();
+                task.setId(rs.getInt(1));
+                task.setActorId(rs.getString(2));
+                task.setName(rs.getString(3));
+                task.setStart(rs.getTimestamp(4));
+                task.setEnd(rs.getTimestamp(5));
+                tasks.add(task);
             }
             
+            
+            
+            //list add last task row
+            statement=connection.prepareStatement(query2);
+            statement.setString(1, uuid);
+            rs=statement.executeQuery();
+            
+            while(rs.next()){
+               lasttask=new Task(1, "finish", rs.getString(3),tasks.get(tasks.size()-1).getEnd(),tasks.get(tasks.size()-1).getEnd());
+               tasks.add(lasttask);
+            }
+           
             
             //connection close
             rs.close();
             statement.close();
             connection.close();
             }
-
+String to=null;
 %>
 <%!
 public String format2(Date d){
@@ -74,7 +87,12 @@ public String format2(Date d){
     if(d==null){ return "";}
     return format.format(d).toString();
 }
-
+public String checkTo(String s1,String s2){
+   if(s2==null)
+       return s1;
+   
+   return s2;
+}
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -109,25 +127,30 @@ public String format2(Date d){
             <thead>
                 <tr>
                     <th>FROM</th>
-                    <th>TO</th>
+                    <th>Actor</th>
                     <th>NAME</th>
-                    <th>CREATE</th>
                     <th>START</th>
                     <th>END</th>
                 </tr>
             </thead>
             <tbody>
-                <%for(Task t:tasks){%>
+                <%
+                Task previousTask = null;
+                for(Task t:tasks){
+                    if (t.getName().equals("start"))
+                        continue;
+    %>
                 <tr>
-                    <td><%=t.getFrom() %></td>
-                    <td><%=t.getTo() %></td>
+                    
+                    <td><% if (previousTask != null) out.print(previousTask.getActorId()); else out.print("start"); %></td>
+                    <td><%=t.getActorId() %></td>
                     <td><%=t.getName() %></td>
-                    <td><%=format2(t.getCreate()) %></td>
                     <td><%=format2(t.getStart()) %></td>
                     <td><%=format2(t.getEnd()) %></td>
                 </tr>
-                <%}%>
-            </tbody>
+                <%
+                previousTask = t;
+                }%>
         </table>
 
         <%}%>

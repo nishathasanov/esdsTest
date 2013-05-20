@@ -1,26 +1,34 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package az.its.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class Task implements Serializable {
+/**
+ *
+ * @author MuradI
+ */
+public class Task implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
-    private String from;
-    private String to;
+    private String actorId;
     private String name;
-    private Date create;
     private Date start;
     private Date end;
 
     public Task() {
     }
 
-    public Task(Integer id, String from, String to, String name, Date create, Date start, Date end) {
+    public Task(Integer id, String actorId, String name, Date start, Date end) {
         this.id = id;
-        this.from = from;
-        this.to = to;
+        this.actorId = actorId;
         this.name = name;
-        this.create = create;
         this.start = start;
         this.end = end;
     }
@@ -33,20 +41,12 @@ public class Task implements Serializable {
         this.id = id;
     }
 
-    public String getFrom() {
-        return from;
+    public String getActorId() {
+        return actorId;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public String getTo() {
-        return to;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
+    public void setActorId(String actorId) {
+        this.actorId = actorId;
     }
 
     public String getName() {
@@ -55,14 +55,6 @@ public class Task implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Date getCreate() {
-        return create;
-    }
-
-    public void setCreate(Date create) {
-        this.create = create;
     }
 
     public Date getStart() {
